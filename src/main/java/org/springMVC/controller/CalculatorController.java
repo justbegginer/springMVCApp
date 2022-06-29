@@ -12,29 +12,26 @@ public class CalculatorController {
                              @RequestParam(name = "first") int firstOperator,
                              @RequestParam(name = "second") int secondOperator,
                              Model model){
-        final String answer = "answer";
+        String answer = "";
         switch (operation){
             case "add":
-                model.addAttribute(answer,
-                        "Answer is " +(firstOperator+secondOperator));
+                answer += firstOperator+secondOperator;
                 break;
             case "multiply":
-                model.addAttribute(answer,
-                        "Answer is " + (firstOperator*secondOperator));
+                answer += firstOperator*secondOperator;
                 break;
             case "divide":
-                model.addAttribute(answer,
-                        "Answer is " + (firstOperator/secondOperator));
+                answer += firstOperator / secondOperator;
                 break;
             case "subtract":
-                model.addAttribute(answer,
-                        "Answer is " + (firstOperator - secondOperator));
+                answer += firstOperator - secondOperator;
                 break;
             default:
-                model.addAttribute(answer,
-                        "Error: incorrect operation");
+                answer += "Error: incorrect operation";
                 break;
         }
+        model.addAttribute("answer",
+                "Answer is "+ answer);
         return "calculator";
 
     }
